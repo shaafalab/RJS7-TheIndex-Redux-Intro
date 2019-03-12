@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actionsManager from "./store/actions.js";
 
 class Sidebar extends Component {
   render() {
@@ -10,7 +12,9 @@ class Sidebar extends Component {
             <button>AUTHORS</button>
           </h4>
           <h4 className="menu-item">
-            <button onClick={this.props.addAuthorHandler}>+ ADD AUTHOR</button>
+            <button onClick={() => this.props.addAuthorHandler()}>
+              + ADD AUTHOR
+            </button>
           </h4>
         </section>
       </div>
@@ -18,4 +22,13 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+const mapDispatchToProps = dispatch => {
+  return {
+    addAuthorHandler: () => dispatch(actionsManager.addAuther())
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Sidebar);
